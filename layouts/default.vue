@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <Nuxt />
-    <AppFooter />
+    <app-footer />
   </div>
 </template>
 <script>

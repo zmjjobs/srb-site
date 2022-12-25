@@ -120,19 +120,23 @@ export default {
   methods: {
     //显示用户信息
     showInfo() {
+      //判断cookie中是否存有用户信息
       let userInfo = cookie.get('userInfo')
       if (!userInfo) {
-        console.log('cookie not exist')
+        console.log('cookie不存在')
         this.userInfo = null
         return
       }
+
       userInfo = JSON.parse(userInfo)
+
+      //首先需要校验token是否合法
       this.$axios({
         url: '/api/core/userInfo/checkToken',
         method: 'get',
-        header: {
-          token: userInfo.token,
-        },
+        // headers: {
+        //   token: userInfo.token,
+        // },
       }).then((response) => {
         console.log('校验成功')
         this.userInfo = userInfo
